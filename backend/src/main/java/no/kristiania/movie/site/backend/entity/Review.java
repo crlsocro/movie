@@ -16,7 +16,7 @@ public class Review {
 
     @NotNull
     @Size(max = 3000)
-    private String review;
+    private String reviewText;
 
     @OneToOne
     @NotNull
@@ -44,12 +44,12 @@ public class Review {
         this.id = id;
     }
 
-    public String getReview() {
-        return review;
+    public String getReviewText() {
+        return reviewText;
     }
 
-    public void setReview(String review) {
-        this.review = review;
+    public void setReviewText(String reviewText) {
+        this.reviewText = reviewText;
     }
 
     public User getAuthor() {

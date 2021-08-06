@@ -5,6 +5,7 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -35,6 +36,9 @@ public class User {
 
     @NotNull
     private Boolean enabled;
+
+    @ManyToMany
+    private List<Movie> reviewsByUsers;
 
     public User() {
     }
@@ -93,5 +97,13 @@ public class User {
 
     public void setEnabled(Boolean enabled) {
         this.enabled = enabled;
+    }
+
+    public List<Movie> getReviewsByUsers() {
+        return reviewsByUsers;
+    }
+
+    public void setReviewsByUsers(List<Movie> reviewsByUsers) {
+        this.reviewsByUsers = reviewsByUsers;
     }
 }

@@ -12,22 +12,41 @@ public class DefaultDataInitializerService {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private MovieService movieService;
+
+    @Autowired
+    private ReviewService reviewService;
+
     @PostConstruct
     public void initialize(){
-        String userOne = "Ola";
-        String userTwo = "kari";
-        String userThree = "Donald";
+        String userName1 = "ola123";
+        String userName2 = "Kari900";
+        String userName3 = "Musk001";
 
         attempt(() -> {
-            return userService.createUser("ola123", userOne, "Nordmann", "ola.nordmann@kristiania.no", "123");
+            return userService.createUser(userName1, "Ola", "Nordmann", "ola.nordmann@kristiania.no", "123");
         });
         attempt(() -> {
-            return userService.createUser("kari123", userTwo, "Nordmann", "kari.nordmann@kristiania.no", "123");
+            return userService.createUser(userName2, "Kari", "Nordmann", "kari.nordmann@kristiania.no", "123");
         });
         attempt(() -> {
-            return userService.createUser("trump23", userThree, "Trump", "donald.trump@usa.com", "123");
+            return userService.createUser(userName3, "Elon", "Musk", "elon.musk@spacex.com", "456");
         });
 
+        Long Movie1 = attempt(() -> movieService.createMovie("The Shawshank Redemption", "Frank Darabont", 1994));
+        Long Movie2 = attempt(() -> movieService.createMovie("The Godfather", "Francis Ford Coppola", 1972));
+        Long Movie3 = attempt(() -> movieService.createMovie("The Dark Knight", "Christopher Nolan", 2008));
+        Long Movie4 = attempt(() -> movieService.createMovie("Pulp Fiction", "Quentin Tarantino", 1994));
+        Long Movie5 = attempt(() -> movieService.createMovie("Inception", "Christopher Nolan", 2010));
+
+        attempt(() -> reviewService.createReview(Movie1, "One of the best",userName1));
+        attempt(() -> reviewService.createReview(Movie1, "Very good movie",userName2));
+        attempt(() -> reviewService.createReview(Movie3, "One of the best",userName3));
+        attempt(() -> reviewService.createReview(Movie2, "Not so good",userName1));
+        attempt(() -> reviewService.createReview(Movie2, "Boring",userName2));
+        attempt(() -> reviewService.createReview(Movie5, "I liked this movie",userName3));
+        attempt(() -> reviewService.createReview(Movie4, "Very fun",userName1));
 
     }
 

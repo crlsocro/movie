@@ -3,9 +3,11 @@ package no.kristiania.movie.site.backend.entity;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.sql.Date;
+import java.util.List;
 
 @Entity
 public class Movie {
@@ -24,7 +26,10 @@ public class Movie {
     private String directorName;
 
     @NotNull
-    private Date yearOfRelease;
+    private int yearOfRelease;
+
+    @ManyToMany(mappedBy = "reviewsByUsers")
+    private List<User> allReviews;
 
     public Movie() {
     }
@@ -53,11 +58,19 @@ public class Movie {
         this.directorName = directorName;
     }
 
-    public Date getYearOfRelease() {
+    public int getYearOfRelease() {
         return yearOfRelease;
     }
 
-    public void setYearOfRelease(Date yearOfRelease) {
+    public void setYearOfRelease(int yearOfRelease) {
         this.yearOfRelease = yearOfRelease;
+    }
+
+    public List<User> getAllReviews() {
+        return allReviews;
+    }
+
+    public void setAllReviews(List<User> allReviews) {
+        this.allReviews = allReviews;
     }
 }
