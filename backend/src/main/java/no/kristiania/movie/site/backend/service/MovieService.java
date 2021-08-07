@@ -28,6 +28,18 @@ public class MovieService {
         return movie.getId();
     }
 
+    public Movie getMovie(Long movieId,boolean withReviews){
+        Movie movie = em.find(Movie.class, movieId);
+
+        if(movie == null){
+            throw new IllegalStateException("Movie not found in database");
+        }
+        if(withReviews){
+            movie.getAllReviews().size();
+        }
+        return movie;
+    }
+
     public void deleteMovie(Long movieId){
         Movie movieRemove = em.find(Movie.class, movieId);
 
