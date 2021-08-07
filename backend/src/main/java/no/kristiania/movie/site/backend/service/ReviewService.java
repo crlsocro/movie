@@ -24,7 +24,7 @@ public class ReviewService {
         return query.getResultList();
     }
 
-    public Long createReview(long movieId, String reviewText, String username){
+    public Long createReview(Long movieId, String reviewText, String username){
         Movie movie = em.find(Movie.class, movieId);
         User user = em.find(User.class, username);
 
@@ -36,7 +36,7 @@ public class ReviewService {
         }
         Review review = new Review();
         review.setReviewText(reviewText);
-        review.setAuthor(user);
+        review.setUserName(user);
         review.setMovieInformation(movie);
         review.setReviewCreated(LocalDate.now());
         user.getReviewsByUsers().add(movie);

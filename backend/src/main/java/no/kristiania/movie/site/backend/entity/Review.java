@@ -20,7 +20,7 @@ public class Review {
 
     @OneToOne
     @NotNull
-    private User author;
+    private User userName;
 
     @ManyToOne
     @NotNull
@@ -28,10 +28,6 @@ public class Review {
 
     @NotNull
     private LocalDate reviewCreated;
-
-    @Min(1)
-    @Max(5)
-    private int rating;
 
     public Review() {
     }
@@ -52,12 +48,12 @@ public class Review {
         this.reviewText = reviewText;
     }
 
-    public User getAuthor() {
-        return author;
+    public User getUserName() {
+        return userName;
     }
 
-    public void setAuthor(User author) {
-        this.author = author;
+    public void setUserName(User userName) {
+        this.userName = userName;
     }
 
     public Movie getMovieInformation() {
@@ -76,11 +72,4 @@ public class Review {
         this.reviewCreated = reviewCreated;
     }
 
-    public int getRating() {
-        return rating;
-    }
-
-    public void setRating(int rating) {
-        this.rating = rating;
-    }
 }

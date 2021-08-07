@@ -28,13 +28,9 @@ public class ReviewServiceTest extends ServiceTestBase{
 
     @Test
     public void createReview(){
-        String title = "Title1";
-        long movie1 = movieService.createMovie(title, "Director1", 1945);
-
-        userService.createUser("foo", "123","ss","ss@tt.no","111");
-
-        reviewService.createReview(movie1, "foo", "text");
-
-        assertEquals(1, reviewService.getAllReviews().size());
+        userService.createUser("Foo", "Foo", "Bar", "foo.bar@kristiania.no", "123");
+        Long movieId = movieService.createMovie("Foo", "Testing for fun", 20201);
+        Long reviewId = reviewService.createReview(movieId, "Testing review text", "Foo");
+        assertNotNull(reviewId);
     }
 }
