@@ -26,12 +26,26 @@ public class MovieController implements Serializable {
 
     private boolean hasReviews = false;
     private Long movieId;
+    private Movie selectedMovie;
 
     private List<Review> Reviews = new ArrayList<>();
     private String reviewText = "";
 
     public List<Movie> getMovies(int numberOfMovies){
         return movieService.getAllMovies(true).stream().limit(numberOfMovies).collect(Collectors.toList());
+    }
+
+    public String selectMovie(Movie movie){
+
+        selectedMovie = movie;
+        if(selectedMovie!= null){
+            hasReviews = !Reviews.isEmpty();
+        }
+        return "/movie.jsf?faces-redirect=true";
+    }
+
+    public Movie getSelectedMovie() {
+        return selectedMovie;
     }
 
     public String getMovieRedirectLink(Long movieId){
